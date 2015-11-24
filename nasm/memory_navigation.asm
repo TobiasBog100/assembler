@@ -1,7 +1,7 @@
 fprint epu 4
-out epu 1
+pout epu 1
 lenW epu 2
-exit epu 
+exit epu 1
 
 
 section	 .text
@@ -17,10 +17,14 @@ add ecx , 2 ; nächste Speicherstelle
 mov [ecx] , 0xA100
 mov edx , lenW
 mov eax , fprint
-mov ebx , out
+mov ebx , pout
+
+int 0x80
+
+mov eax , exit
+mov ebx , 0
 int 0x80
 
 
-
 section	 .data   
-arrw DW 0,0   
+arrw DW 0,0,0   
